@@ -84,7 +84,7 @@
 // 定义中文计数，主要作用于章节的计数
 #let chinesenumbering(..nums, location: none, brackets: false) = {
   let actual_loc = if location == none { here() } else { location }
-  
+
   if appendixcounter.at(actual_loc).first() < 10 {
     if nums.pos().len() == 1 {
       "第" + chinesenumber(nums.pos().first(), standalone: true) + "章"
@@ -222,7 +222,7 @@
         } else {
           counter(page).at(footer.first().location()).first()
         }
-        
+
         link(el.location(), if el.level == 1 {
           strong(str(page_number))
         } else {
@@ -433,7 +433,7 @@
         } else {
           counter(page).at(footer.first().location()).first()
         }
-        
+
         link(el.location(), if el.level == 1 {
           strong(str(page_number))
         } else {
@@ -462,7 +462,7 @@
       #set par(first-line-indent: 0em)
       #text("Keywords: ", weight: "bold")
       #en_key_words.join("; ")
-      
+
       #text("CLC Code: ", stroke: auto_fake_blod)
       #clc_number
       #v(sect_chars)
@@ -485,10 +485,10 @@
       #set par(first-line-indent: 0em)
       #text("关键字： ", stroke: auto_fake_blod)
       #cn_key_words.join("； ")
-      
+
       #text("中图分类号： ", stroke: auto_fake_blod)
       #clc_number
-      
+
   ]
   smartpagebreak()
 }
@@ -601,7 +601,7 @@
   // 设置字体加粗和斜体样式
   show strong: it => text(stroke:auto_fake_blod,it.body)
   show emph: it => text(style: "italic", it.body)
-  
+
   // 设置列表格式
   set list(indent: 2em)
   set enum(indent: 2em)
@@ -729,8 +729,6 @@
     }
   }
 
-  par(justify: true, first-line-indent: 2em, leading: linespacing)[
-    #doc
-  ]
+  set par(justify: true, first-line-indent: 2em, leading: linespacing)
+  doc
 }
-
