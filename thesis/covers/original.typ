@@ -1,5 +1,6 @@
 #import "../template.typ":smartpagebreak,font_size_dict,font_type_dict
 #import "../config.typ":auto_fake_blod
+#set text(size: font_size_dict.小四, font: font_type_dict.宋体)
 #smartpagebreak()
 #v(5em)
 #text()[
@@ -19,8 +20,8 @@
       stroke: (),
       align: (right,left+bottom,right,right,left+bottom,right),
       [作者签名：],[#line(length:6em)],[],[日期：],[#line(length:6em)],[]
-  )  
-]       
+  )
+]
 
 #text()[
   #set align(center+bottom)
@@ -39,5 +40,5 @@
       stroke: (),
       align: (right,left+bottom,right,right,left+bottom,right),
       [作者签名：],[#line(length:6em)],[],[导师签名：],[#line(length:6em)],[],[日期：],[#line(length:6em)],[]
-)        
+)
 #v(5em)
