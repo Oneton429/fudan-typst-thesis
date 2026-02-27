@@ -21,11 +21,11 @@
 )
 
 #let font_type_dict = (
-  仿宋: ("Times New Roman", "FangSong"),
-  宋体: ("Times New Roman", "Simsun (Founder Extended)"),
-  黑体: ("Times New Roman", "SimHei"),
-  楷体: ("Times New Roman", "KaiTi"),
-  代码: ("New Computer Modern Mono", "Times New Roman", "SimSun"),
+  仿宋: ((name: "Times New Roman", covers: "latin-in-cjk"), "FangSong"),
+  宋体: ((name: "Times New Roman", covers: "latin-in-cjk"), "SimSun-ExtG"),
+  黑体: ((name: "Times New Roman", covers: "latin-in-cjk"), "SimHei"),
+  楷体: ((name: "Times New Roman", covers: "latin-in-cjk"), "KaiTi"),
+  代码: ((name: "New Computer Modern Mono", covers: "latin-in-cjk"), "Times New Roman", "SimSun"),
 )
 
 #let lengthceil(len, unit: font_size_dict.小四) = calc.ceil(len / unit) * unit
