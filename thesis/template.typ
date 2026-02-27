@@ -579,7 +579,7 @@
           let part = partcounter.at(headers.last().location()).first()
           [
             #if part < 20 {
-              numbering("i", counter(page).at(here()).first() - 2)
+              numbering("i", calc.max(0, counter(page).at(here()).first() - 2))
             } else {
               str(counter(page).at(here()).first())
             }
