@@ -21,11 +21,11 @@
 )
 
 #let font_type_dict = (
-  仿宋: ("Times New Roman", "FangSong"),
-  宋体: ("Times New Roman", "Simsun (Founder Extended)"),
-  黑体: ("Times New Roman", "SimHei"),
-  楷体: ("Times New Roman", "KaiTi"),
-  代码: ("New Computer Modern Mono", "Times New Roman", "SimSun"),
+  仿宋: ((name: "Times New Roman", covers: "latin-in-cjk"), "FangSong"),
+  宋体: ((name: "Times New Roman", covers: "latin-in-cjk"), "SimSun-ExtG"),
+  黑体: ((name: "Times New Roman", covers: "latin-in-cjk"), "SimHei"),
+  楷体: ((name: "Times New Roman", covers: "latin-in-cjk"), "KaiTi"),
+  代码: ((name: "New Computer Modern Mono", covers: "latin-in-cjk"), "Times New Roman", "SimSun"),
 )
 
 #let lengthceil(len, unit: font_size_dict.小四) = calc.ceil(len / unit) * unit
@@ -84,7 +84,7 @@
 // 定义中文计数，主要作用于章节的计数
 #let chinesenumbering(..nums, location: none, brackets: false) = {
   let actual_loc = if location == none { here() } else { location }
-  
+
   if appendixcounter.at(actual_loc).first() < 10 {
     if nums.pos().len() == 1 {
       "第" + chinesenumber(nums.pos().first(), standalone: true) + "章"
@@ -222,7 +222,7 @@
         } else {
           counter(page).at(footer.first().location()).first()
         }
-        
+
         link(el.location(), if el.level == 1 {
           strong(str(page_number))
         } else {
@@ -433,7 +433,7 @@
         } else {
           counter(page).at(footer.first().location()).first()
         }
-        
+
         link(el.location(), if el.level == 1 {
           strong(str(page_number))
         } else {
@@ -462,7 +462,7 @@
       #set par(first-line-indent: 0em)
       #text("Keywords: ", weight: "bold")
       #en_key_words.join("; ")
-      
+
       #text("CLC Code: ", stroke: auto_fake_blod)
       #clc_number
       #v(sect_chars)
@@ -485,10 +485,10 @@
       #set par(first-line-indent: 0em)
       #text("关键字： ", stroke: auto_fake_blod)
       #cn_key_words.join("； ")
-      
+
       #text("中图分类号： ", stroke: auto_fake_blod)
       #clc_number
-      
+
   ]
   smartpagebreak()
 }
@@ -579,7 +579,7 @@
           let part = partcounter.at(headers.last().location()).first()
           [
             #if part < 20 {
-              numbering("i", counter(page).at(here()).first() - 2)
+              numbering("i", calc.max(0, counter(page).at(here()).first() - 2))
             } else {
               str(counter(page).at(here()).first())
             }
@@ -601,7 +601,7 @@
   // 设置字体加粗和斜体样式
   show strong: it => text(stroke:auto_fake_blod,it.body)
   show emph: it => text(style: "italic", it.body)
-  
+
   // 设置列表格式
   set list(indent: 2em)
   set enum(indent: 2em)
@@ -729,8 +729,6 @@
     }
   }
 
-  par(justify: true, first-line-indent: 2em, leading: linespacing)[
-    #doc
-  ]
+  set par(justify: true, first-line-indent: 2em, leading: linespacing)
+  doc
 }
-
