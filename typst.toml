@@ -1,0 +1,9 @@
+[package]
+name = "fdu-typst-thesis"
+version = "0.3.0"
+entrypoint = "main.typ"
+authors = ["MobtgZhang"]
+license = "MIT"
+description = "复旦大学学位论文 Typst 模板，支持本科、硕士和博士学位论文"
+repository = "https://github.com/MobtgZhang/fdu-typst-thesis"
+keywords = ["fudan", "thesis", "typst", "template", "chinese"]
