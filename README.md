@@ -130,7 +130,6 @@ $ P(A | B) = frac(P(B | A) P(A), P(B)) $ <eq:bayes>
 
 ## 参考项目
 
-- [MobtgZhang/fudan-typst-thesis](https://github.com/MobtgZhang/fudan-typst-thesis)
 - [pku-typst/pkuthss-typst](https://github.com/pku-typst/pkuthss-typst)
 - [stone-zeng/fduthesis](https://github.com/stone-zeng/fduthesis)
 
