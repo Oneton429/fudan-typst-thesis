@@ -21,37 +21,34 @@
     #set text(font: font-family.宋体, weight: "semibold", size: font-size.五号)
     #table(
       stroke: none,
-      align: (right, left, center, right, left),
-      columns: (auto, 50pt, 160pt, auto, 100pt),
-      // 密级行
-      [], [], [],
+      align: (right, left),
+      columns: (auto, auto),
       [#if info.at("secret-level", default: none) != none {
-        [#strong("密" + h(2em) + "级：")]
+        strong("密" + h(2em) + "级：")
       }],
       [#if info.at("secret-level", default: none) != none {
         info.secret-level
       }],
-      // 学校代码行
-      [], [], [], [#strong("学校代码：")], [#school-code],
-      // 学号行
-      [], [], [], [#strong("学" + h(2em) + "号：")], [#info.student-id],
-      // 学生类型行（同等学力 / 英文项目）
-      [], [], [], [],
+      [#strong("学校代码：")], [#school-code],
+      [#strong("学" + h(2em) + "号：")], [#info.student-id],
+      [],
       [#text(size: font-size.五号)[
         #if info.at("equivalent-education", default: false) [同等学力人员]
         #if info.at("english-program", default: false) [英文项目]
       ]],
     )
+  ]
 
-    #v(2em)
+  v(2em)
 
-    // ===== 校名图片（毛泽东题写） =====
+  // ===== 校名图片（毛泽东题写） =====
+  align(center)[
     #figure(
       image("../../images/fudan-name.png", width: 3.02in, height: 1.13in),
     )
-
-    #v(1em)
   ]
+
+  v(1em)
 
   // ===== 学位论文类别 =====
   align(center + top)[
@@ -125,11 +122,11 @@
 
     if is-professional {
       align(center)[
-        #field-row([#spread-chars("院系", width: 4em)：], info.school)
+        #field-row([#spread-chars("院系", width: 4em, count: 4)：], info.school)
         #v(0.8em)
         #field-row([专业学位类别（领域）：], info.major)
         #v(0.8em)
-        #field-row([#spread-chars("姓名", width: 4em)：], info.author)
+        #field-row([#spread-chars("姓名", width: 4em, count: 4)：], info.author)
         #v(0.8em)
         #field-row([#spread-chars("指导教师", width: 4em)：], info.supervisor + if info.at("supervisor-second", default: none) != none { h(2em) + info.supervisor-second } else { [] })
         #v(0.8em)
@@ -137,11 +134,11 @@
       ]
     } else {
       align(center)[
-        #field-row([#spread-chars("院系", width: 4em)：], info.school)
+        #field-row([#spread-chars("院系", width: 4em, count: 4)：], info.school)
         #v(0.8em)
-        #field-row([#spread-chars("专业", width: 4em)：], info.major)
+        #field-row([#spread-chars("专业", width: 4em, count: 4)：], info.major)
         #v(0.8em)
-        #field-row([#spread-chars("姓名", width: 4em)：], info.author)
+        #field-row([#spread-chars("姓名", width: 4em, count: 4)：], info.author)
         #v(0.8em)
         #field-row([#spread-chars("指导教师", width: 4em)：], info.supervisor + if info.at("supervisor-second", default: none) != none { h(2em) + info.supervisor-second } else { [] })
         #v(0.8em)
@@ -213,15 +210,15 @@
     }
 
     align(center)[
-      #field-row([#spread-chars("题目", width: 4em)：], info.title)
+      #field-row([#spread-chars("题目", width: 4em, count: 4)：], info.title)
       #v(0.8em)
-      #field-row([#spread-chars("院系", width: 4em)：], info.school)
+      #field-row([#spread-chars("院系", width: 4em, count: 4)：], info.school)
       #v(0.8em)
-      #field-row([#spread-chars("专业", width: 4em)：], info.major)
+      #field-row([#spread-chars("专业", width: 4em, count: 4)：], info.major)
       #v(0.8em)
-      #field-row([#spread-chars("姓名", width: 4em)：], info.author)
+      #field-row([#spread-chars("姓名", width: 4em, count: 4)：], info.author)
       #v(0.8em)
-      #field-row([#spread-chars("学号", width: 4em)：], info.student-id)
+      #field-row([#spread-chars("学号", width: 4em, count: 4)：], info.student-id)
       #v(0.8em)
       #field-row([#spread-chars("指导教师", width: 4em)：], info.supervisor)
     ]

@@ -87,15 +87,36 @@
 }
 
 // 将字符串均匀分布在指定宽度内（用于封面标签对齐）
-// 例如 spread-chars("院系", width: 4em) 会将"院"和"系"分散到 4em 宽度中
-#let spread-chars(s, width: 4em) = {
+// count 参数指定目标槽位数，2 字标签设 count:4 可与 4 字标签对齐
+#let spread-chars(s, width: 4em, count: none) = {
   let chars = s.clusters()
-  box(width: width)[
-    #grid(
-      columns: (1fr,) * chars.len(),
-      ..chars.map(c => align(center, c))
-    )
-  ]
+  let n = if count != none { calc.max(count, chars.len()) } else { chars.len() }
+
+  if n == chars.len() {
+    box(width: width)[
+      #grid(
+        columns: (1fr,) * n,
+        ..chars.map(c => align(center, c))
+      )
+    ]
+  } else {
+    let cells = ()
+    for i in range(n) {
+      if i == 0 {
+        cells.push(align(center, chars.first()))
+      } else if i == n - 1 {
+        cells.push(align(center, chars.last()))
+      } else {
+        cells.push([])
+      }
+    }
+    box(width: width)[
+      #grid(
+        columns: (1fr,) * n,
+        ..cells
+      )
+    ]
+  }
 }
 
 // 中文日期格式化：2026年3月19日

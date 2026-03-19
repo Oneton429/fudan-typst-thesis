@@ -55,15 +55,25 @@
   // 目录深度
   outline-depth: 3,
   // 插图目录
-  list-of-image: false,
+  list-of-image: true,
   // 表格目录
-  list-of-table: false,
+  list-of-table: true,
 
   // ========== 指导小组成员（可选，扉页） ==========
   // 设为 none 则不生成扉页
-  committee: none,
-  // 如需扉页，传入成员列表：
-  // committee: ("张三　教授", "李四　副教授", "王五　讲师"),
+  committee: ("张三　教授", "李四五　副教授", "王五　讲师"),
+
+  // ========== 主要符号对照表（可选） ==========
+  // 设为 none 则不生成；传入内容则生成符号说明页
+  notation: none,
+  // notation: [
+  //   #table(
+  //     columns: (auto, auto),
+  //     stroke: none,
+  //     [$alpha$], [学习率],
+  //     [$beta$], [动量系数],
+  //   )
+  // ],
 
   // ========== 参考文献 ==========
   // 格式须符合 GB/T 7714—2015

@@ -13,6 +13,7 @@
 #import "pages/abstract-zh.typ": abstract-zh-page
 #import "pages/abstract-en.typ": abstract-en-page
 #import "pages/outline-page.typ": outline-page, list-of-figures-page, list-of-tables-page
+#import "pages/notation-page.typ": notation-page
 
 // 默认论文信息
 #let default-info = (
@@ -51,6 +52,7 @@
   acknowledgements: none,
   appendix: none,
   committee: none,
+  notation: none,
   body,
 ) = {
   // 合并用户信息与默认值
@@ -248,15 +250,7 @@
   cover-page(info, blind: blind)
 
   // ========================================================
-  // 第二部分：声明页（非盲审时显示）
-  // ========================================================
-  if not blind {
-    pagebreak()
-    declaration-page(twoside: twoside)
-  }
-
-  // ========================================================
-  // 第三部分：扉页（指导小组成员名单，可选）
+  // 第二部分：扉页（指导小组成员名单，可选）
   // ========================================================
   if committee != none and not blind {
     pagebreak()
@@ -313,11 +307,18 @@
     list-of-tables-page()
   }
 
+  // 主要符号对照表（可选）
+  if notation != none {
+    if twoside { pagebreak(to: "odd") } else { pagebreak() }
+    heading(level: 1, numbering: none, outlined: true, bookmarked: true)[主要符号对照表]
+    notation-page(notation)
+  }
+
   // ========================================================
   // 第五部分：正文（阿拉伯数字页码）
   // ========================================================
   set page(
-    header: make-header(info: info, twoside: twoside),
+    header: make-body-header(info: info),
     footer: make-footer(),
   )
 
@@ -361,5 +362,13 @@
     set text(font: font-family.宋体, size: font-size.小四)
     set par(first-line-indent: 2em, leading: 1.0em, justify: true)
     acknowledgements
+  }
+
+  // ========================================================
+  // 第九部分：独创性声明与授权声明（非盲审，页眉页脚为空）
+  // ========================================================
+  if not blind {
+    pagebreak()
+    declaration-page(twoside: twoside)
   }
 }
